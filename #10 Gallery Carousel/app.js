@@ -20,12 +20,22 @@ imgs.forEach(setImgPosition);
 
 rightBtn.addEventListener("click", () => {
   const currentImage = list.querySelector(".current-img");
-  const nextImage = currentImage.nextElementSibling;
-  imageSlider(currentImage, nextImage);
+  const currentIndex = imgs.indexOf(currentImage);
+  if (currentIndex === imgs.length - 1) {
+    alert("You are at the end of the gallery");
+  } else {
+    const nextImage = currentImage.nextElementSibling;
+    imageSlider(currentImage, nextImage);
+  }
 });
 
 leftBtn.addEventListener("click", () => {
   const currentImage = list.querySelector(".current-img");
-  const prevImage = currentImage.previousElementSibling;
-  imageSlider(currentImage, prevImage);
+  const currentIndex = imgs.indexOf(currentImage);
+  if (currentIndex === 0) {
+    alert("You are at the beginning of the gallery");
+  } else {
+    const prevImage = currentImage.previousElementSibling;
+    imageSlider(currentImage, prevImage);
+  }
 });
