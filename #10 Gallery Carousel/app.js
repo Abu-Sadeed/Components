@@ -9,12 +9,23 @@ const setImgPosition = (img, index) => {
   img.style.left = imgWidth * index + "px";
 };
 
+//Image slider functionality
+const imageSlider = (firstImg, secondImg) => {
+  firstImg.classList.remove("current-img");
+  secondImg.classList.add("current-img");
+  list.style.transform = "translateX(-" + secondImg.style.left + ")";
+};
+
 imgs.forEach(setImgPosition);
 
 rightBtn.addEventListener("click", () => {
   const currentImage = list.querySelector(".current-img");
   const nextImage = currentImage.nextElementSibling;
-  currentImage.classList.remove("current-img");
-  nextImage.classList.add("current-img");
-  list.style.transform = "translateX(-" + nextImage.style.left + ")";
+  imageSlider(currentImage, nextImage);
+});
+
+leftBtn.addEventListener("click", () => {
+  const currentImage = list.querySelector(".current-img");
+  const prevImage = currentImage.previousElementSibling;
+  imageSlider(currentImage, prevImage);
 });
