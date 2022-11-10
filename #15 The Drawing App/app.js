@@ -32,7 +32,7 @@ canvas.addEventListener("mousemove", (e) => {
   if (isPressed) {
     const x2 = e.offsetX;
     const y2 = e.offsetY;
-
+    drawingCircles(x2, y2);
     drawingLines(x, y, x2, y2);
 
     x = x2;
@@ -46,6 +46,14 @@ const drawingLines = (x1, y1, x2, y2) => {
   ctx.moveTo(x1, y1);
   ctx.lineTo(x2, y2);
   ctx.strokeStyle = color;
-  ctx.lineWidth = size;
+  ctx.lineWidth = size * 2;
   ctx.stroke();
+};
+
+//drawing circles
+const drawingCircles = (x, y) => {
+  ctx.beginPath();
+  ctx.arc(x, y, size, 0, Math.PI * 2);
+  ctx.fillStyle = color;
+  ctx.fill();
 };
