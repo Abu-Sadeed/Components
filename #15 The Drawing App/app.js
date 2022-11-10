@@ -78,3 +78,8 @@ decreaseBtn.addEventListener("click", () => {
   }
   updateSizeOnScreen();
 });
+
+//change color
+colorBtn.addEventListener("change", (e) => {
+  color = e.target.value;
+});
