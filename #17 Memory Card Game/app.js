@@ -3,6 +3,15 @@ let cardIsFlipped = false;
 let lockBoard = false;
 let firstCard, secondCard;
 
+const shuffle = function () {
+  memoryCard.forEach((card) => {
+    let randomPos = (Math.random() * 12) | 0;
+    card.style.order = randomPos;
+  });
+};
+
+shuffle();
+
 const flipCard = function () {
   if (lockBoard) return;
   if (this === firstCard) return;
