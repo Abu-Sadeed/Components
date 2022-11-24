@@ -1,7 +1,16 @@
 const memoryCard = document.querySelectorAll(".memory-card");
+const reset = document.querySelector("#reset-btn");
 let cardIsFlipped = false;
 let lockBoard = false;
 let firstCard, secondCard;
+
+reset.addEventListener("click", () => {
+  memoryCard.forEach((card) => {
+    card.classList.remove("flip");
+    card.addEventListener("click", flipCard);
+  });
+  shuffle();
+});
 
 const shuffle = function () {
   memoryCard.forEach((card) => {
