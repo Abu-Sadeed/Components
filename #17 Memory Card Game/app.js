@@ -1,14 +1,32 @@
 const memoryCard = document.querySelectorAll(".memory-card");
 const reset = document.querySelector("#reset-btn");
+const timer = document.querySelector(".timer");
 let cardIsFlipped = false;
 let lockBoard = false;
 let firstCard, secondCard;
+let time = 0;
+
+const startTimer = function () {
+  let interval = setInterval(() => {
+    time++;
+    timer.textContent = time;
+    console.log(time);
+  }, 1000);
+};
+
+startTimer();
+
+const stopTimer = function () {
+  clearInterval(interval);
+};
 
 reset.addEventListener("click", () => {
+  stopTimer();
   memoryCard.forEach((card) => {
     card.classList.remove("flip");
     card.addEventListener("click", flipCard);
   });
+
   shuffle();
 });
 
