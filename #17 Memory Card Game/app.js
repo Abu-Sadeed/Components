@@ -1,27 +1,56 @@
 const memoryCard = document.querySelectorAll(".memory-card");
 const reset = document.querySelector("#reset-btn");
-const timer = document.querySelector(".timer");
+const appendTens = document.getElementById("tens");
+const appendSeconds = document.getElementById("seconds");
 let cardIsFlipped = false;
 let lockBoard = false;
 let firstCard, secondCard;
 let time = 0;
+let timerInterval;
+let seconds = 0;
+let tens = 0;
 
 const startTimer = function () {
-  let interval = setInterval(() => {
-    time++;
-    timer.textContent = time;
-    console.log(time);
-  }, 1000);
+  tens++;
+
+  if (tens <= 9) {
+    appendTens.innerHTML = "0" + tens;
+  }
+
+  if (tens > 9) {
+    appendTens.innerHTML = tens;
+  }
+
+  if (tens > 99) {
+    seconds++;
+    appendSeconds.innerHTML = "0" + seconds;
+    tens = 0;
+    appendTens.innerHTML = "0" + 0;
+  }
+
+  if (seconds > 9) {
+    appendSeconds.innerHTML = seconds;
+  }
 };
 
-startTimer();
+const countScore = function () {
+  clearInterval(timerInterval);
+  timerInterval = setInterval(startTimer, 10);
+};
 
-const stopTimer = function () {
-  clearInterval(interval);
+countScore();
+
+const resetTimer = function () {
+  clearInterval(timerInterval);
+  tens = "00";
+  seconds = "00";
+  appendTens.innerHTML = tens;
+  appendSeconds.innerHTML = seconds;
+  countScore();
 };
 
 reset.addEventListener("click", () => {
-  stopTimer();
+  resetTimer();
   memoryCard.forEach((card) => {
     card.classList.remove("flip");
     card.addEventListener("click", flipCard);
