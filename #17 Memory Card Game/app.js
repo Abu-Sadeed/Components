@@ -9,6 +9,7 @@ let time = 0;
 let timerInterval;
 let seconds = 0;
 let tens = 0;
+let cardCount = 0;
 
 const startTimer = function () {
   tens++;
@@ -34,6 +35,7 @@ const startTimer = function () {
 };
 
 const countScore = function () {
+  cardCount = 0;
   clearInterval(timerInterval);
   timerInterval = setInterval(startTimer, 10);
 };
@@ -92,6 +94,12 @@ const matchCheck = function () {
   if (firstCard.dataset.name === secondCard.dataset.name) {
     firstCard.removeEventListener("click", flipCard);
     secondCard.removeEventListener("click", flipCard);
+    cardCount += 2;
+    console.log(cardCount);
+    if (cardCount === 12) {
+      stopTimer();
+      alert("You won!");
+    }
     resetBoard();
   } else {
     lockBoard = true;
