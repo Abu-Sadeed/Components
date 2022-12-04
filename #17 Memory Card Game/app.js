@@ -49,6 +49,10 @@ const resetTimer = function () {
   countScore();
 };
 
+const stopTimer = function () {
+  clearInterval(timerInterval);
+};
+
 reset.addEventListener("click", () => {
   resetTimer();
   memoryCard.forEach((card) => {
